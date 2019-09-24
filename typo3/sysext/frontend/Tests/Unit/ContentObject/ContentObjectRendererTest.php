@@ -2799,7 +2799,7 @@ class ContentObjectRendererTest extends \TYPO3\TestingFramework\Core\Unit\UnitTe
                 ],
                 'some.body@test.typo3.org',
                 'mailto:some.body@test.typo3.org',
-                '<a href="javascript:linkTo_UnCryptMailto(\'nbjmup+tpnf\/cpezAuftu\/uzqp4\/psh\');">some.body(at)test.typo3.org</a>',
+                '<a href="javascript:linkTo_UnCryptMailto(%27nbjmup%2Btpnf%5C%2FcpezAuftu%5C%2Fuzqp4%5C%2Fpsh%27);">some.body(at)test.typo3.org</a>',
             ],
             'mono-alphabetic substitution offset +1 with at substitution' => [
                 [
@@ -2809,7 +2809,7 @@ class ContentObjectRendererTest extends \TYPO3\TestingFramework\Core\Unit\UnitTe
                 ],
                 'some.body@test.typo3.org',
                 'mailto:some.body@test.typo3.org',
-                '<a href="javascript:linkTo_UnCryptMailto(\'nbjmup+tpnf\/cpezAuftu\/uzqp4\/psh\');">some.body@test.typo3.org</a>',
+                '<a href="javascript:linkTo_UnCryptMailto(%27nbjmup%2Btpnf%5C%2FcpezAuftu%5C%2Fuzqp4%5C%2Fpsh%27);">some.body@test.typo3.org</a>',
             ],
             'mono-alphabetic substitution offset +1 with at and dot substitution' => [
                 [
@@ -2819,7 +2819,7 @@ class ContentObjectRendererTest extends \TYPO3\TestingFramework\Core\Unit\UnitTe
                 ],
                 'some.body@test.typo3.org',
                 'mailto:some.body@test.typo3.org',
-                '<a href="javascript:linkTo_UnCryptMailto(\'nbjmup+tpnf\/cpezAuftu\/uzqp4\/psh\');">some.body(at)test.typo3(dot)org</a>',
+                '<a href="javascript:linkTo_UnCryptMailto(%27nbjmup%2Btpnf%5C%2FcpezAuftu%5C%2Fuzqp4%5C%2Fpsh%27);">some.body(at)test.typo3(dot)org</a>',
             ],
             'mono-alphabetic substitution offset -1 with at and dot substitution' => [
                 [
@@ -2829,7 +2829,17 @@ class ContentObjectRendererTest extends \TYPO3\TestingFramework\Core\Unit\UnitTe
                 ],
                 'some.body@test.typo3.org',
                 'mailto:some.body@test.typo3.org',
-                '<a href="javascript:linkTo_UnCryptMailto(\'lzhksn9rnld-ancxZsdrs-sxon2-nqf\');">some.body(at)test.typo3(dot)org</a>',
+                '<a href="javascript:linkTo_UnCryptMailto(%27lzhksn9rnld-ancxZsdrs-sxon2-nqf%27);">some.body(at)test.typo3(dot)org</a>',
+            ],
+            'mono-alphabetic substitution offset 2 with at and dot substitution and encoded subject' => [
+                [
+                    'spamProtectEmailAddresses' => '2',
+                    'spamProtectEmailAddresses_atSubst' => '(at)',
+                    'spamProtectEmailAddresses_lastDotSubst' => '(dot)',
+                ],
+                'some.body@test.typo3.org',
+                'mailto:some.body@test.typo3.org?subject=foo%20bar',
+                '<a href="javascript:linkTo_UnCryptMailto(%27ocknvq%2Cuqog0dqfaBvguv0varq50qti%3Fuwdlgev%3Dhqq%2542dct%27);">some.body@test.typo3.org</a>',
             ],
             'entity substitution with at and dot substitution' => [
                 [
