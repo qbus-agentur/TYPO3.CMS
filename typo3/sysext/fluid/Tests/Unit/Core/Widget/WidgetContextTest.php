@@ -125,7 +125,7 @@ class WidgetContextTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
     /**
      * @test
      */
-    public function sleepReturnsExpectedPropertyNames()
+    public function jsonEncodeContainsExpectedPropertyNames()
     {
         $this->assertEquals(
             [
@@ -133,7 +133,7 @@ class WidgetContextTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
                 'parentPluginNamespace', 'parentVendorName', 'parentExtensionName', 'parentPluginName',
                 'widgetViewHelperClassName'
             ],
-            $this->widgetContext->__sleep()
+            array_keys(json_decode(json_encode($this->widgetContext), true))
         );
     }
 }

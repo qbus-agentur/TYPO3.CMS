@@ -27,7 +27,7 @@ class AjaxWidgetContextHolder implements \TYPO3\CMS\Core\SingletonInterface
      * An array $ajaxWidgetIdentifier => $widgetContext
      * which stores the widget context.
      *
-     * @var array
+     * @var WidgetContext[]
      */
     protected $widgetContexts = [];
 
@@ -50,9 +50,13 @@ class AjaxWidgetContextHolder implements \TYPO3\CMS\Core\SingletonInterface
     protected function loadWidgetContexts()
     {
         if (TYPO3_MODE === 'FE') {
-            $this->widgetContexts = unserialize($GLOBALS['TSFE']->fe_user->getKey('ses', $this->widgetContextsStorageKey));
+            $this->widgetContexts = $this->buildWidgetContextsFromArray(
+                json_decode($GLOBALS['TSFE']->fe_user->getKey('ses', $this->widgetContextsStorageKey ?? null), true) ?? []
+            );
         } else {
-            $this->widgetContexts = unserialize($GLOBALS['BE_USER']->uc[$this->widgetContextsStorageKey]);
+            $this->widgetContexts = $this->buildWidgetContextsFromArray(
+                json_decode($GLOBALS['BE_USER']->uc[$this->widgetContextsStorageKey] ?? '', true) ?? []
+            );
             $GLOBALS['BE_USER']->writeUC();
         }
     }
@@ -61,7 +65,7 @@ class AjaxWidgetContextHolder implements \TYPO3\CMS\Core\SingletonInterface
      * Get the widget context for the given $ajaxWidgetId.
      *
      * @param string $ajaxWidgetId
-     * @return \TYPO3\CMS\Fluid\Core\Widget\WidgetContext
+     * @return WidgetContext
      */
     public function get($ajaxWidgetId)
     {
@@ -75,9 +79,9 @@ class AjaxWidgetContextHolder implements \TYPO3\CMS\Core\SingletonInterface
      * Stores the WidgetContext inside the Context, and sets the
      * AjaxWidgetIdentifier inside the Widget Context correctly.
      *
-     * @param \TYPO3\CMS\Fluid\Core\Widget\WidgetContext $widgetContext
+     * @param WidgetContext $widgetContext
      */
-    public function store(\TYPO3\CMS\Fluid\Core\Widget\WidgetContext $widgetContext)
+    public function store(WidgetContext $widgetContext)
     {
         $ajaxWidgetId = md5(uniqid(mt_rand(), true));
         $widgetContext->setAjaxWidgetIdentifier($ajaxWidgetId);
@@ -91,11 +95,27 @@ class AjaxWidgetContextHolder implements \TYPO3\CMS\Core\SingletonInterface
     protected function storeWidgetContexts()
     {
         if (TYPO3_MODE === 'FE') {
-            $GLOBALS['TSFE']->fe_user->setKey('ses', $this->widgetContextsStorageKey, serialize($this->widgetContexts));
+            $GLOBALS['TSFE']->fe_user->setKey('ses', $this->widgetContextsStorageKey, json_encode($this->widgetContexts));
             $GLOBALS['TSFE']->fe_user->storeSessionData();
         } else {
-            $GLOBALS['BE_USER']->uc[$this->widgetContextsStorageKey] = serialize($this->widgetContexts);
+            $GLOBALS['BE_USER']->uc[$this->widgetContextsStorageKey] = json_encode($this->widgetContexts);
             $GLOBALS['BE_USER']->writeUc();
         }
+    }
+
+    /**
+     * Builds WidgetContext instances from JSON representation,
+     * this is basically required for AJAX widgets only.
+     *
+     * @param array $data
+     * @return WidgetContext[]
+     */
+    protected function buildWidgetContextsFromArray(array $data): array
+    {
+        $widgetContexts = [];
+        foreach ($data as $widgetId => $widgetContextData) {
+            $widgetContexts[$widgetId] = WidgetContext::fromArray($widgetContextData);
+        }
+        return $widgetContexts;
     }
 }
