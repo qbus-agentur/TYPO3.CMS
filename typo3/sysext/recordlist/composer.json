@@ -1,6 +1,6 @@
 {
 	"name": "typo3/cms-recordlist",
-	"type": "typo3-cms-framework",
+	"type": "typo3-cms-framework", "version": "8.7.32.2",
 	"description": "List of database-records",
 	"homepage": "https://typo3.org",
 	"license": ["GPL-2.0-or-later"],

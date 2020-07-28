@@ -1,6 +1,6 @@
 {
 	"name": "typo3/cms-setup",
-	"type": "typo3-cms-framework",
+	"type": "typo3-cms-framework", "version": "8.7.32.2",
 	"description": "Allows users to edit a limited set of options for their user profile, eg. preferred language and their name and email address.",
 	"homepage": "https://typo3.org",
 	"license": ["GPL-2.0-or-later"],

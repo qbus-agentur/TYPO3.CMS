@@ -1,6 +1,6 @@
 {
 	"name": "typo3/cms-lang",
-	"type": "typo3-cms-framework",
+	"type": "typo3-cms-framework", "version": "8.7.32.2",
 	"description": "Contains all the core language labels in a set of files mostly of the \"locallang\" format. This extension is always required in a TYPO3 install.",
 	"homepage": "https://typo3.org",
 	"license": ["GPL-2.0-or-later"],

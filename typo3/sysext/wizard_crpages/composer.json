@@ -1,6 +1,6 @@
 {
 	"name": "typo3/cms-wizard-crpages",
-	"type": "typo3-cms-framework",
+	"type": "typo3-cms-framework", "version": "8.7.32.2",
 	"description": "A little utility to create many empty pages in one batch. Great for making a quick page structure.",
 	"homepage": "https://typo3.org",
 	"license": ["GPL-2.0-or-later"],

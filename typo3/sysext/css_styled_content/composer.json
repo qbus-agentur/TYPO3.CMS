@@ -1,6 +1,6 @@
 {
 	"name": "typo3/cms-css-styled-content",
-	"type": "typo3-cms-framework",
+	"type": "typo3-cms-framework", "version": "8.7.32.2",
 	"description": "Contains configuration for CSS content-rendering of the table \"tt_content\". This is meant as a modern substitute for the classic \"content (default)\" template which was based more on <font>-tags, while this is pure CSS.",
 	"homepage": "https://typo3.org",
 	"license": ["GPL-2.0-or-later"],

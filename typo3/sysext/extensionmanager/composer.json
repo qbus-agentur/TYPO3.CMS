@@ -1,6 +1,6 @@
 {
 	"name": "typo3/cms-extensionmanager",
-	"type": "typo3-cms-framework",
+	"type": "typo3-cms-framework", "version": "8.7.32.2",
 	"description": "TYPO3 Extension Manager",
 	"homepage": "https://typo3.org",
 	"license": ["GPL-2.0-or-later"],

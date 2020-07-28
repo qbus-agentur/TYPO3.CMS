@@ -1,6 +1,6 @@
 {
 	"name": "typo3/cms-lowlevel",
-	"type": "typo3-cms-framework",
+	"type": "typo3-cms-framework", "version": "8.7.32.2",
 	"description": "Enables the 'Config' and 'DB Check' modules for technical analysis of the system. This includes raw database search, checking relations, counting pages and records etc.",
 	"homepage": "https://typo3.org",
 	"license": ["GPL-2.0-or-later"],
