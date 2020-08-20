@@ -27,7 +27,7 @@ namespace TYPO3\CMS\Fluid\Core\Widget;
  */
 class WidgetContext implements \JsonSerializable
 {
-    protected const JSON_SERIALIZABLE_PROPERTIES = [
+    /*protected */const JSON_SERIALIZABLE_PROPERTIES = [
         'widgetIdentifier',
         'ajaxWidgetIdentifier',
         'widgetConfiguration',
