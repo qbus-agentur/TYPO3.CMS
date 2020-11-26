@@ -842,6 +842,7 @@ class PageLayoutController
         if (!$dbList->nextThree) {
             $dbList->nextThree = 1;
         }
+        $dbList->externalTables = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables'] ?? [];
         // Create menu for selecting a table to jump to (this is, if more than just pages/tt_content elements are found on the page!)
         // also fills $dbList->activeTables
         $dbList->getTableMenu($this->id);
